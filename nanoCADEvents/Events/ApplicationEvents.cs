@@ -13,16 +13,8 @@ namespace nanoCADEvents
 
         private void OnDocumentCreatedEvent(object sender, DocumentCollectionEventArgs e)
         {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            if (doc == null)
-            {
-                return;
-            }
-
             MessageService msgService = new MessageService();
             msgService.InfoMessage("Document created");
-
-            
         }
     }
 }
