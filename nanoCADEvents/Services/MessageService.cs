@@ -10,15 +10,19 @@ namespace nanoCADEvents.Services
     {
         public void ConsoleMessage(string message, [CallerMemberName] string caller = null)
         {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            if (doc == null)
+            try
             {
-                InfoMessage(message,caller);
-                return;
-            }
+                Document doc = Application.DocumentManager.MdiActiveDocument;
+                if (doc == null)
+                {
+                    InfoMessage(message, caller);
+                    return;
+                }
 
-            Editor ed = doc.Editor;
-            ed.WriteMessage((string.IsNullOrEmpty(caller) ? "" : $"{caller} : ") + message);
+                Editor ed = doc.Editor;
+                ed.WriteMessage((string.IsNullOrEmpty(caller) ? "" : $"{caller} : ") + message);
+            }
+            catch { }
         }
 
         public void CommandStartedMessage(string command)
