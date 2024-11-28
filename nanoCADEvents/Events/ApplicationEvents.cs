@@ -1,5 +1,5 @@
 ﻿using HostMgd.ApplicationServices;
-using System;
+using nanoCADEvents.Services;
 
 namespace nanoCADEvents
 {
@@ -7,7 +7,8 @@ namespace nanoCADEvents
     {
         private void OnDocumentToBeDestroyedEvent(object sender, DocumentCollectionEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageService msgService = new MessageService();
+            msgService.InfoMessage("Document start to be destroyed");
         }
 
         private void OnDocumentCreatedEvent(object sender, DocumentCollectionEventArgs e)
@@ -18,12 +19,13 @@ namespace nanoCADEvents
                 return;
             }
 
+            MessageService msgService = new MessageService();
+            msgService.InfoMessage("Document created");
+
             doc.CommandCancelled += OnCommandCancelledEvent;
             doc.CommandEnded += OnCommandEndedEvent;
             doc.CommandFailed += OnCommandFailedEvent;
             doc.CommandWillStart += OnCommandWillStartEvent;
         }
-
-       
     }
 }

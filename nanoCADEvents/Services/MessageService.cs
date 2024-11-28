@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using HostMgd.ApplicationServices;
+using HostMgd.EditorInput;
+using Application = HostMgd.ApplicationServices.Application;
 
 namespace nanoCADEvents.Services
 {
@@ -7,17 +11,42 @@ namespace nanoCADEvents.Services
     {
         public void ConsoleMessage(string message, [CallerMemberName] string caller = null)
         {
-            throw new NotImplementedException();
+            Document doc = Application.DocumentManager.MdiActiveDocument;
+            if (doc == null)
+            {
+                InfoMessage(message,caller);
+                return;
+            }
+
+            Editor ed = doc.Editor;
+            ed.WriteMessage((string.IsNullOrEmpty(caller) ? "" : $"{caller} : ") + message);
         }
 
         public void CommandStartedMessage(string command)
         {
-            throw new NotImplementedException();
+            ConsoleMessage($"{_title} - {command} started", null);
         }
 
         public void CommandEndedMessage(string command)
         {
-            throw new NotImplementedException();
+            ConsoleMessage($"{_title} - {command} ended", null);
         }
+
+        public void CommandFailedMessage(string command)
+        {
+            ConsoleMessage($"{_title} - {command} failed", null);
+        }
+
+        public void CommandCancelledMessage(string command)
+        {
+            ConsoleMessage($"{_title} - {command} cancelled", null);
+        }
+
+        public void InfoMessage(string message, [CallerMemberName] string caller = null)
+        {
+            MessageBox.Show(message, _title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private readonly string _title = typeof(MessageService).Assembly.GetName().Name + " v." + typeof(MessageService).Assembly.GetName().Version;
     }
 }

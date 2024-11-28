@@ -17,11 +17,7 @@ namespace nanoCADEvents
                 OnDocumentCreatedEvent(null, null);
             }
         }
-
-      
-        public void Terminate()
-        {
-            throw new NotImplementedException();
-        }
+        
+        public void Terminate() { }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using HostMgd.ApplicationServices;
-using System;
+using nanoCADEvents.Services;
 
 namespace nanoCADEvents
 {
@@ -7,22 +7,26 @@ namespace nanoCADEvents
     {
         private void OnCommandWillStartEvent(object sender, CommandEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageService msgService = new MessageService();
+            msgService.CommandStartedMessage(e.GlobalCommandName);
         }
 
         private void OnCommandFailedEvent(object sender, CommandEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageService msgService = new MessageService();
+            msgService.CommandFailedMessage(e.GlobalCommandName);
         }
 
         private void OnCommandEndedEvent(object sender, CommandEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageService msgService = new MessageService();
+            msgService.CommandEndedMessage(e.GlobalCommandName);
         }
 
         private void OnCommandCancelledEvent(object sender, CommandEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageService msgService = new MessageService();
+            msgService.CommandCancelledMessage(e.GlobalCommandName);
         }
     }
 }
