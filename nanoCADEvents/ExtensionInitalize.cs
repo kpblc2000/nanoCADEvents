@@ -15,6 +15,10 @@ namespace nanoCADEvents
             if (doc != null)
             {
                 OnDocumentCreatedEvent(null, null);
+                doc.CommandCancelled += OnCommandCancelledEvent;
+                doc.CommandEnded += OnCommandEndedEvent;
+                doc.CommandFailed += OnCommandFailedEvent;
+                doc.CommandWillStart += OnCommandWillStartEvent;
             }
         }
         

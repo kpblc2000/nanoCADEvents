@@ -22,10 +22,7 @@ namespace nanoCADEvents
             MessageService msgService = new MessageService();
             msgService.InfoMessage("Document created");
 
-            doc.CommandCancelled += OnCommandCancelledEvent;
-            doc.CommandEnded += OnCommandEndedEvent;
-            doc.CommandFailed += OnCommandFailedEvent;
-            doc.CommandWillStart += OnCommandWillStartEvent;
+            
         }
     }
 }
