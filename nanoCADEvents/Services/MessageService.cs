@@ -1,8 +1,7 @@
-﻿using System;
+﻿using HostMgd.ApplicationServices;
+using HostMgd.EditorInput;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using HostMgd.ApplicationServices;
-using HostMgd.EditorInput;
 using Application = HostMgd.ApplicationServices.Application;
 
 namespace nanoCADEvents.Services
@@ -47,6 +46,7 @@ namespace nanoCADEvents.Services
             MessageBox.Show(message, _title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private readonly string _title = typeof(MessageService).Assembly.GetName().Name + " v." + typeof(MessageService).Assembly.GetName().Version;
+        private readonly string _title = typeof(MessageService).Assembly.GetName().Name + " v." +
+                                         typeof(MessageService).Assembly.GetName().Version;
     }
 }
